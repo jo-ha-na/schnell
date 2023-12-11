@@ -1,8 +1,4 @@
 package com.example.schnell_project.ui.task;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,55 +7,42 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.example.schnell_project.R;
 import com.example.schnell_project.databinding.ActivityTaskBinding;
-import com.example.schnell_project.databinding.FragmentSlideshowBinding;
-import com.example.schnell_project.ui.slideshow.SlideshowViewModel;
 
-public class TaskFragment extends AppCompatActivity {
+public class TaskFragment extends Fragment {
+
     private ActivityTaskBinding binding;
     private ImageView imageView;
     private RelativeLayout relativeLayout;
 
     private int xDelta;
     private int yDelta;
-//try of push
 
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task);
-
-        //init ui views
-        imageView = findViewById(R.id.imageView);
-        relativeLayout = findViewById(R.id.relative_layout);
-
-        //setup layout params
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(800, 600);
-        imageView.setLayoutParams(layoutParams);
-        //setup touch listener
-        imageView.setOnTouchListener(new TaskFragment.CustomTouchListener());
-
-    }
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        ;
-
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = ActivityTaskBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        // init ui views
+        imageView = root.findViewById(R.id.imageView);
+        relativeLayout = root.findViewById(R.id.relative_layout);
+
+        // setup layout params
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(800, 600);
+        imageView.setLayoutParams(layoutParams);
+
+        // setup touch listener
+        imageView.setOnTouchListener(new CustomTouchListener());
 
         return root;
     }
 
-    /*@Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }*/
-    //declare ui views
     private class CustomTouchListener implements View.OnTouchListener {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
@@ -78,7 +61,7 @@ public class TaskFragment extends AppCompatActivity {
                     break;
 
                 case MotionEvent.ACTION_UP:
-                    Toast.makeText(TaskFragment.this, "Image is on new Location!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "Image is on a new location!", Toast.LENGTH_SHORT).show();
                     break;
                 case MotionEvent.ACTION_POINTER_DOWN:
                     break;
@@ -98,7 +81,4 @@ public class TaskFragment extends AppCompatActivity {
             return true;
         }
     }
-
-    }
-
-
+}
