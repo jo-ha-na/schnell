@@ -17,14 +17,6 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
         <item
-            android:id="@+id/nav_task"
-            android:icon="@drawable/ic_menu_task"
-            android:title="@string/menu_task" />
-        <item
-            android:id="@+id/nav_test"
-            android:icon="@drawable/ic_menu_task"
-            android:title="@string/menu_test" />
-        <item
             android:id="@+id/nav_trello"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_trello" />

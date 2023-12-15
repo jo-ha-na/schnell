@@ -14,4 +14,6 @@
     <string name="menu_test">Test</string>
     <string name="menu_trello">Trello</string>
     <string name="title_activity_main">MainActivity</string>
+
+    <string name="element_text">task</string>
 </resources>

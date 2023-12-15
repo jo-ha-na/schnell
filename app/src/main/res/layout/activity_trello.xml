@@ -6,13 +6,75 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.TrelloActivity">
 
-    <TextView
-        android:id="@+id/text_test"
+ <RelativeLayout
+     android:id="@+id/textTitle"
+     android:layout_width="match_parent"
+     android:layout_height="30dp"
+     app:layout_constraintTop_toTopOf="parent">
+
+     <TextView
+         android:id="@+id/textToDo"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:gravity="center_vertical|start"
+         android:text="To Do"
+         android:textSize="12sp"
+         app:layout_constraintEnd_toEndOf="@+id/textDoing"
+         app:layout_constraintStart_toStartOf="parent" />
+
+     <TextView
+        android:id="@+id/textDoing"
         android:layout_width="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|start"
+        android:text="Doing"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/textToDo"
+        app:layout_constraintHorizontal_bias="0.651"
+        app:layout_constraintStart_toEndOf="@+id/textDone"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="trello activity"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+ </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_below="@id/textTitle"
+        android:layout_height="match_parent">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/todoRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintEnd_toStartOf="@+id/inProgressRecyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/inProgressRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/doneRecyclerView"
+        app:layout_constraintStart_toEndOf="@+id/todoRecyclerView"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/doneRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/inProgressRecyclerView"
+         />
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
