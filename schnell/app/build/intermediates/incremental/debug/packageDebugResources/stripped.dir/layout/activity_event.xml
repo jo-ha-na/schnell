@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EventActivity">
+
+    <!-- Ajoutez un TextView pour afficher la date ou d'autres informations -->
+
+    <!-- Liste d'événements -->
+
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="106dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginBottom="606dp"
+        android:text="Evenement à la date sélectionnée"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewEvents"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewEvents"
+        android:layout_width="324dp"
+        android:layout_height="276dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="284dp"
+        android:paddingStart="8dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@id/btnAddEvent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
+
+    <!-- Bouton pour ajouter un événement -->
+    <Button
+        android:id="@+id/btnAddEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Ajouter un événement"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <!-- Bouton pour ajouter un événement -->
+    <Button
+        android:id="@+id/btnShowAllEvents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Afficher tous les évenements" />
+</RelativeLayout>
