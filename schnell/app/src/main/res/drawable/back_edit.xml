@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <!-- rounded_edittext_bg.xml -->
+    <shape xmlns:android="http://schemas.android.com/apk/res/android">
+        <solid android:color="#ffffff"/> <!-- Couleur de fond -->
+        <corners android:radius="10dp"/> <!-- Rayon des coins -->
+        <stroke android:color="#000000" android:width="2dp"/> <!-- Couleur et largeur de la bordure -->
+    </shape>
+
+
+
+
