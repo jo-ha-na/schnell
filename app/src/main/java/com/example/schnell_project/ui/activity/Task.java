@@ -6,6 +6,7 @@ public class Task {
     private String description;
     private String status;
 
+
     // Constructor
     public Task(String title, String description, String status) {
         this.title = title;
