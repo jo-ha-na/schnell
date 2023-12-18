@@ -8,7 +8,8 @@
         android:id="@+id/textViewEventName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nom de l'événement" />
+        android:text="Nom de l'événement"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textViewEventDescription"
@@ -26,7 +27,18 @@
         android:id="@+id/btnModifyDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Modifier" />
+        android:text="Modifier"
+        android:textColorHighlight="#5CAB7D"
+        android:textColorLink="#5CAB7D" />
+
+    <Button
+        android:id="@+id/btnDeleteSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recyclerViewAllEvents"
+        android:text="Supprimer"
+        android:textColorHighlight="#5CAB7D"
+        android:textColorLink="#5CAB7D" />
 
     <!-- Ajoutez d'autres vues selon vos besoins -->
 

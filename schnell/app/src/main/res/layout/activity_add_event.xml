@@ -10,8 +10,8 @@
         android:id="@+id/etEventName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Nom de l'événement" />
+        android:hint="Nom de l'événement"
+        android:layout_marginTop="16dp"/>
 
     <DatePicker
         android:id="@+id/datePicker"
@@ -26,16 +26,17 @@
         android:id="@+id/etEventDescription"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:hint="Description de l'événement"
         android:layout_below="@id/datePicker"
-        android:layout_marginTop="3dp"
-        android:hint="Description de l'événement" />
+        android:layout_marginTop="16dp"/>
 
     <Button
         android:id="@+id/btnSaveEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/etEventDescription"
-        android:layout_marginTop="39dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
         android:text="Enregistrer" />
 
     <Button
@@ -45,7 +46,7 @@
         android:layout_below="@id/etEventDescription"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="39dp"
+        android:layout_marginEnd="40dp"
         android:text="Annuler" />
 
 </RelativeLayout>

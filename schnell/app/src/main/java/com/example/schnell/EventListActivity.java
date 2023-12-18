@@ -22,21 +22,20 @@ public class EventListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewAllEvents;
     private EventAdapter eventAdapter;
-    private List<com.example.schnell.EventModel> allEventsList;
+    private List<EventModel> allEventsList;
     private DatabaseReference allEventsReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
-
         Button btnAddEvent1 = findViewById(R.id.btnAddEvent1);
         btnAddEvent1.setOnClickListener(view -> {
             Intent intent = new Intent(EventListActivity.this, AddEventActivity.class);
             startActivity(intent);
         });
 
-        allEventsReference = FirebaseDatabase.getInstance().getReference("events");
+        allEventsReference = FirebaseDatabase.getInstance().getReference().child("events");
 
         recyclerViewAllEvents = findViewById(R.id.recyclerViewAllEvents);
         allEventsList = new ArrayList<>();
@@ -46,9 +45,7 @@ public class EventListActivity extends AppCompatActivity {
 
         loadAllEvents();
 
-        // Ajoutez votre code pour le bouton de suppression ici
-        Button btnDeleteSelected = findViewById(R.id.btnDeleteSelected);
-        btnDeleteSelected.setOnClickListener(view -> deleteSelectedEvents());
+
     }
 
     private void loadAllEvents() {
@@ -56,7 +53,7 @@ public class EventListActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot eventSnapshot : snapshot.getChildren()) {
-                    com.example.schnell.EventModel event = eventSnapshot.getValue(com.example.schnell.EventModel.class);
+                    EventModel event = eventSnapshot.getValue(EventModel.class);
                     if (event != null) {
                         allEventsList.add(event);
                     }
@@ -78,18 +75,7 @@ public class EventListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void deleteSelectedEvents() {
-        // Implémentez la logique pour supprimer les événements sélectionnés de la base de données
-        // Vous devez obtenir la liste des événements sélectionnés de votre adapter
-        List<com.example.schnell.EventModel> selectedEvents = eventAdapter.getSelectedEvents();
 
-        // Supprimez les événements sélectionnés de la base de données
-        for (com.example.schnell.EventModel event : selectedEvents) {
-            // Ajoutez la logique pour supprimer l'événement de votre source de données (Firebase, SQLite, etc.)
-            //   allEventsReference.child(event.getId()).removeValue(); // Exemple pour Firebase Realtime Database
-        }
 
-        // Effacez la sélection dans l'adapter
-        eventAdapter.clearSelection();
-    }
 }
+
