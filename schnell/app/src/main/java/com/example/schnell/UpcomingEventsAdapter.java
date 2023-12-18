@@ -8,10 +8,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-// UpcomingEventsAdapter.java
-// UpcomingEventsAdapter.java
 public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAdapter.EventViewHolder> {
 
     private List<EventModel> eventList;
@@ -39,7 +38,9 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
     }
 
     public void updateEvents(List<EventModel> upcomingEvents) {
-
+        eventList.clear();
+        eventList.addAll(upcomingEvents);
+        notifyDataSetChanged();
     }
 
     public static class EventViewHolder extends RecyclerView.ViewHolder {
@@ -63,4 +64,3 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
         }
     }
 }
-

@@ -39,9 +39,9 @@ public class Reg extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
+        if (currentUser != null) {
 
-            Intent intent =  new Intent(getApplicationContext(), MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
 
@@ -59,10 +59,10 @@ public class Reg extends AppCompatActivity {
         buttonReg = findViewById(R.id.btn_reg);
         progressBar = findViewById(R.id.progressBarReg);
         textView = findViewById(R.id.loginNow);
-        textView.setOnClickListener(new View.OnClickListener(){
+        textView.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
 
                 Intent intent = new Intent(getApplicationContext(), Log.class);
                 startActivity(intent);
@@ -70,3 +70,5 @@ public class Reg extends AppCompatActivity {
 
             }
         });
+    }
+}

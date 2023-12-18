@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
     tools:context=".ModifyDateActivity">
     <!-- activity_modify_date.xml -->
     <LinearLayout
@@ -11,16 +12,46 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <EditText
+            android:id="@+id/etEventName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Nom de l'événement"
+            android:textColorHighlight="#5CAB7D"
+            android:textColorLink="#5CAB7D" />
+
         <DatePicker
             android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etEventName"
+            android:paddingLeft="20dp"
+            android:yearListSelectorColor="#5CAB7D" />
+
+        <EditText
+            android:id="@+id/etEventDescription"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="100dp"
+            android:layout_below="@id/datePicker"
+            android:layout_marginTop="16dp"
+            android:hint="Description de l'événement" />
 
         <Button
             android:id="@+id/btnSaveChanges"
-            android:layout_width="wrap_content"
+            android:layout_width="385dp"
             android:layout_height="wrap_content"
-            android:text="Enregistrer les modifications" />
+            android:text="Enregistrer les modifications"
+            android:textColorHighlight="#5CAB7D"
+            android:textColorLink=" #5CAB7D"
+            />
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="388dp"
+            android:layout_height="wrap_content"
+            android:text="Annuler" />
+
     </LinearLayout>
 
 
