@@ -3,24 +3,20 @@ public class EventModel {
 
     private String name;
     private String description;
-    private long dayOfMonth;
-    private long month;
-    private long year;
-    private String eventId;
-    private String formattedDate; // Ajout de formattedDate
+    private int dayOfMonth;
+    private int month;
+    private int year;
+    private Object id; // Ajoutez cette ligne pour déclarer la variable id
 
-    // Ajout d'un constructeur vide nécessaire pour Firebase
-    public EventModel() {
-    }
-
-    public EventModel(String eventId, String name, String description, long dayOfMonth, long month, long year, String formattedDate) {
-        this.eventId = eventId;
+    public EventModel(String name, String description, int dayOfMonth, int month, int year) {
         this.name = name;
         this.description = description;
         this.dayOfMonth = dayOfMonth;
         this.month = month;
         this.year = year;
-        this.formattedDate = formattedDate;
+        // Vous devez initialiser l'ID d'une manière ou d'une autre, selon votre logique d'application.
+        // Par exemple, vous pourriez le générer automatiquement ou le passer en tant que paramètre.
+        // this.id = generateId();
     }
 
     public String getName() {
@@ -31,23 +27,23 @@ public class EventModel {
         return description;
     }
 
-    public long getDayOfMonth() {
+    public int getDayOfMonth() {
         return dayOfMonth;
     }
 
-    public long getMonth() {
+    public int getMonth() {
         return month;
     }
 
-    public long getYear() {
+    public int getYear() {
         return year;
     }
 
-    public String getEventId() {
-        return eventId;
+    public Object getId() {
+        return id;
     }
 
     public String getFormattedDate() {
-        return formattedDate;
+        return String.format("%02d/%02d/%04d", dayOfMonth, month + 1, year);
     }
 }

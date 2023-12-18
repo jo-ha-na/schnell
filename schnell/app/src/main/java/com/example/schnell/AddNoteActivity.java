@@ -1,8 +1,10 @@
 package com.example.schnell;
 
 
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -10,20 +12,17 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class AddNoteActivity extends AppCompatActivity {
 
     private EditText editTextNote;
     private Button btnSaveNote;
     private Spinner spinnerCategories;
-    private String noteIdToUpdate; // Pour stocker l'ID de la note à mettre à jour, le cas échéant
-    private String text; // Pour stocker le texte de la note à mettre à jour
-    private String category; // Pour stocker la catégorie de la note à mettre à jour
+
+    private static final long DOUBLE_CLICK_DELAY = 300;
+    private long lastClickTime = 0;
+    private int clickCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,55 +33,64 @@ public class AddNoteActivity extends AppCompatActivity {
         editTextNote = findViewById(R.id.editTextNote);
         btnSaveNote = findViewById(R.id.btnSaveNote);
 
+        // Simulez des données de catégories
         String[] categories = {"Personnel", "Travail", "Autre"};
+
+        // Affichez les catégories dans le spinner
         ArrayAdapter<String> categoriesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
         categoriesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategories.setAdapter(categoriesAdapter);
 
+        // Obtenez les données de l'intent
         Intent intent = getIntent();
         if (intent.hasExtra("NoteText")) {
-            text = intent.getStringExtra("NoteText");
-            noteIdToUpdate = intent.getStringExtra("NoteId");
-            editTextNote.setText(text);
+            String existingNote = intent.getStringExtra("NoteText");
+            editTextNote.setText(existingNote);
         }
 
         // Gérer le clic sur le bouton pour enregistrer la note
         btnSaveNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Récupérez le texte et la catégorie de la note
                 String noteText = editTextNote.getText().toString();
                 String selectedCategory = spinnerCategories.getSelectedItem().toString();
 
-                if (noteIdToUpdate != null) {
-                    updateNoteInFirebase(noteIdToUpdate, noteText, selectedCategory);
+                // Vérifiez si c'est un double-clic ou un simple clic
+                if (isDoubleClick()) {
+                    // Double-clic, ouvrez la note (vous devrez implémenter cette logique)
+                    openNoteDetails(noteText, selectedCategory);
                 } else {
-                    createNoteInFirebase(noteText, selectedCategory);
+                    // Simple clic, cochez la note (vous devrez implémenter cette logique)
+                    checkNoteForDeletion(noteText, selectedCategory);
                 }
             }
         });
     }
 
-    // Méthode pour créer une nouvelle note dans la base de données Firebase
-    private void createNoteInFirebase(String noteText, String category) {
-        DatabaseReference notesRef = FirebaseDatabase.getInstance().getReference().child("notes");
-        String noteId = notesRef.push().getKey();
+    private boolean isDoubleClick() {
+        long clickTime = System.currentTimeMillis();
+        if (clickTime - lastClickTime < DOUBLE_CLICK_DELAY) {
+            clickCount++;
+        } else {
+            clickCount = 1;
+        }
 
-        NoteModel note = new NoteModel(noteId, noteText, category);
-        notesRef.child(noteId).setValue(note);
+        lastClickTime = clickTime;
 
-        Toast.makeText(this, "Nouvelle note enregistrée avec succès", Toast.LENGTH_SHORT).show();
-        finish();
+        // Retourne vrai si c'est un double-clic
+        return clickCount == 2;
     }
 
-    // Méthode pour mettre à jour une note existante dans la base de données Firebase
-    private void updateNoteInFirebase(String noteId, String noteText, String category) {
-        DatabaseReference notesRef = FirebaseDatabase.getInstance().getReference().child("notes");
+    private void openNoteDetails(String noteText, String category) {
+        // Implémentez la logique pour ouvrir les détails de la note
+        // par exemple, lancez une nouvelle activité
+        Toast.makeText(this, "Double-clic pour ouvrir : " + noteText, Toast.LENGTH_SHORT).show();
+    }
 
-        NoteModel updatedNote = new NoteModel(noteId, noteText, category);
-        notesRef.child(noteId).setValue(updatedNote);
-
-        Toast.makeText(this, "Note mise à jour avec succès", Toast.LENGTH_SHORT).show();
-
-        finish();
+    private void checkNoteForDeletion(String noteText, String category) {
+        // Implémentez la logique pour cocher la note pour la suppression
+        // par exemple, mettez à jour la base de données ou l'adaptateur de liste
+        Toast.makeText(this, "Simple clic pour cocher : " + noteText, Toast.LENGTH_SHORT).show();
     }
 }

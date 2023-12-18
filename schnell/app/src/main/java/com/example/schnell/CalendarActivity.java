@@ -17,61 +17,71 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class CalendarActivity extends AppCompatActivity {
-    private EventAdapter eventAdapter;
+
     private CalendarView calendarView;
     private RecyclerView recyclerViewUpcomingEvents;
     private UpcomingEventsAdapter upcomingEventsAdapter;
+
+    // Ajoutez une référence à la base de données
     private DatabaseReference databaseReference;
-    private List<EventModel> eventList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
+        // Initialisez la référence à la base de données
         databaseReference = FirebaseDatabase.getInstance().getReference();
+
         calendarView = findViewById(R.id.calendarView);
         recyclerViewUpcomingEvents = findViewById(R.id.recyclerViewUpcomingEvents);
 
-        eventList = new ArrayList<>();
-        eventAdapter = new EventAdapter(eventList, this);
+        // Initialisez l'adapter et le RecyclerView
         upcomingEventsAdapter = new UpcomingEventsAdapter(new ArrayList<>());
         recyclerViewUpcomingEvents.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewUpcomingEvents.setAdapter(upcomingEventsAdapter);
 
+        // Écoutez les changements de date dans le calendrier
         calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
+            // Utilisez la méthode correcte pour charger les événements
+            List<com.example.projetandroid.EventModel> upcomingEvents = loadEventsForDate(year, month, dayOfMonth);
+
+            // Mettez à jour l'adaptateur avec les nouveaux événements
+            upcomingEventsAdapter.updateEvents(upcomingEvents);
+
+            // Passez à EventActivity avec la date sélectionnée
             Intent intent = new Intent(CalendarActivity.this, EventActivity.class);
             intent.putExtra("year", year);
             intent.putExtra("month", month);
             intent.putExtra("dayOfMonth", dayOfMonth);
             startActivity(intent);
         });
-
-        // Chargez tous les événements et affichez-les dans le RecyclerView
-        loadAllEvents();
     }
 
-    private void loadAllEvents() {
-        databaseReference.child("events").addListenerForSingleValueEvent(new ValueEventListener() {
+    // Méthode pour obtenir les événements à venir pour une date spécifique
+    private List<com.example.projetandroid.EventModel> loadEventsForDate(int year, int month, int dayOfMonth) {
+        List<com.example.projetandroid.EventModel> events = new ArrayList<>();
+
+        // Construisez le chemin approprié dans la base de données Firebase en fonction de la date
+        String datePath = year + "/" + month + "/" + dayOfMonth;
+
+        // Utilisez la référence à la base de données Firebase avec le chemin correct
+        DatabaseReference eventsRef = databaseReference.child("events").child(datePath);
+
+        // Ajoutez un écouteur pour récupérer les événements depuis Firebase
+        eventsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<EventModel> allEvents = new ArrayList<>();
                 for (DataSnapshot eventSnapshot : snapshot.getChildren()) {
-                    EventModel event = eventSnapshot.getValue(EventModel.class);
-                    if (event != null) {
-                        allEvents.add(event);
-                    }
+                    com.example.projetandroid.EventModel event = eventSnapshot.getValue(com.example.projetandroid.EventModel.class);
+                    events.add(event);
                 }
 
-                // Triez la liste d'événements par date si nécessaire
-                // ...
-
-                // Mettez à jour l'adaptateur avec la liste d'événements
-                upcomingEventsAdapter.updateEvents(allEvents);
+                // Mettez à jour votre adaptateur après avoir récupéré les événements
+                upcomingEventsAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -79,6 +89,7 @@ public class CalendarActivity extends AppCompatActivity {
                 // Gérer les erreurs
             }
         });
-    }
 
+        return events;
+    }
 }

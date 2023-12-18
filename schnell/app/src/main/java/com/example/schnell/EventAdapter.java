@@ -1,7 +1,9 @@
 package com.example.schnell;
 
+
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +13,29 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
-    private List<EventModel> eventList;
-    private Context context;
 
-    public EventAdapter(List<EventModel> eventList, Context context) {
+    private List<com.example.schnell.EventModel> eventList;
+    private Context context;
+    private Set<com.example.schnell.EventModel> selectedEvents = new HashSet<>();
+    private OnItemClickListener onItemClickListener;
+
+    public EventAdapter(List<com.example.schnell.EventModel> eventList, Context context) {
         this.eventList = eventList;
         this.context = context;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(com.example.schnell.EventModel event);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
     }
 
     @NonNull
@@ -34,13 +47,48 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
-        EventModel event = eventList.get(position);
+        com.example.schnell.EventModel event = eventList.get(position);
         holder.bind(event);
+
+        holder.itemView.setOnClickListener(v -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(event);
+            }
+        });
+
+        holder.itemView.setOnLongClickListener(v -> {
+            toggleSelection(event);
+            return true;
+        });
+
+        if (selectedEvents.contains(event)) {
+            holder.itemView.setBackgroundColor(Color.LTGRAY);
+        } else {
+            holder.itemView.setBackgroundColor(Color.TRANSPARENT);
+        }
     }
 
     @Override
     public int getItemCount() {
         return eventList.size();
+    }
+
+    public List<com.example.schnell.EventModel> getSelectedEvents() {
+        return new ArrayList<>(selectedEvents);
+    }
+
+    public void clearSelection() {
+        selectedEvents.clear();
+        notifyDataSetChanged();
+    }
+
+    private void toggleSelection(com.example.schnell.EventModel event) {
+        if (selectedEvents.contains(event)) {
+            selectedEvents.remove(event);
+        } else {
+            selectedEvents.add(event);
+        }
+        notifyItemChanged(eventList.indexOf(event));
     }
 
     public class EventViewHolder extends RecyclerView.ViewHolder {
@@ -49,7 +97,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         private TextView textViewEventDescription;
         private TextView textViewEventDate;
         private Button btnModifyDate;
-        private Button btnDeleteSelected;
 
         public EventViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,45 +104,23 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             textViewEventName = itemView.findViewById(R.id.textViewEventName);
             textViewEventDescription = itemView.findViewById(R.id.textViewEventDescription);
             textViewEventDate = itemView.findViewById(R.id.textViewEventDate);
-            btnModifyDate = itemView.findViewById(R.id.btnModifyDate);
-            btnDeleteSelected = itemView.findViewById(R.id.btnDeleteSelected);
+
         }
 
-        public void bind(final EventModel event) {
+        public void bind(com.example.schnell.EventModel event) {
             textViewEventName.setText(event.getName());
             textViewEventDescription.setText(event.getDescription());
-            textViewEventDate.setText(event.getFormattedDate()); // Assurez-vous que la date est formatée correctement
+            textViewEventDate.setText(String.format("%02d/%02d/%d", event.getDayOfMonth(), event.getMonth(), event.getYear()));
 
-            btnModifyDate.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, ModifyDateActivity.class);
-                    intent.putExtra("eventId", event.getEventId());
-                    intent.putExtra("year", event.getYear());
-                    intent.putExtra("month", event.getMonth() - 1);
-                    intent.putExtra("dayOfMonth", event.getDayOfMonth());
-                    context.startActivity(intent);
-                }
+            btnModifyDate.setOnClickListener(v -> {
+                openModifyDateActivity(event.getId());
             });
-            btnDeleteSelected.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        // Obtenez l'événement correspondant à cette position
-                        EventModel eventToDelete = eventList.get(position);
+        }
 
-                        // Implémentez ici la logique pour supprimer l'événement de la base de données Firebase
-                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("events");
-                        databaseReference.child(eventToDelete.getEventId()).removeValue(); // Supprimez l'événement de la base de données
-
-                        // Supprimez également l'événement de l'adapter
-                        eventList.remove(position);
-                        notifyItemRemoved(position);
-                    }
-                }
-            });
-
+        private void openModifyDateActivity(Object id) {
+            Intent intent = new Intent(context, ModifyDateActivity.class);
+            intent.putExtra("eventId", id.toString());
+            context.startActivity(intent);
         }
     }
 }
