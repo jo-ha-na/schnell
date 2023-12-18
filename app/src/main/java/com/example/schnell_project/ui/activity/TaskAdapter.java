@@ -8,16 +8,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.schnell_project.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 
-public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> implements ItemTouchHelperAdapter {
+public class TaskAdapter extends ListAdapter<Task, TaskAdapter.ViewHolder> implements ItemTouchHelperAdapter {
 
     private List<Task> taskList;
 
@@ -30,8 +33,20 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> im
     private static final int DONE_COLUMN_START = 9;
     private static final int DONE_COLUMN_END = 12;
 
-    public TaskAdapter(List<Task> taskList) {
-        this.taskList = taskList;
+    public static final DiffUtil.ItemCallback<Task> DIFF_CALLBACK =
+            new DiffUtil.ItemCallback<Task>() {
+                @Override
+                public boolean areItemsTheSame(Task oldItem, Task newItem) {
+                    return oldItem.getId() == newItem.getId();
+                }
+                @Override
+                public boolean areContentsTheSame(Task oldItem, Task newItem) {
+                    return (oldItem.getTitle() == newItem.getTitle() && oldItem.getStatus() == newItem.getStatus());
+                }
+            };
+    public TaskAdapter() {
+        super(DIFF_CALLBACK);
+        taskList = new ArrayList<>();
     }
 
     private String getColumnStatus(int position) {
@@ -71,6 +86,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> im
             return textView;
         }
         }
+    public void addMoreContacts(List<Task> newTask) {
+        taskList.addAll(newTask);
+        submitList(taskList); // DiffUtil takes care of the check
+    }
 
 
     // Create new views (invoked by the layout manager)
@@ -83,18 +102,17 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> im
         return new ViewHolder(view);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        Task task = taskList.get(position);
-        viewHolder.getTextView().setText(task.getTitle());
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        //Task task = getItem(position);
+            Task task = getItem(position);
+            holder.getTextView().setText(task.getTitle());
     }
 
+    // Replace the contents of a view (invoked by the layout manager)
+
+
     // Return the size of your dataset (invoked by the layout manager)
-    @Override
-    public int getItemCount() {
-        return taskList.size();
-    }
     public void onItemMoved(int fromPosition, int toPosition) {
         Task movedTask = taskList.get(fromPosition);
         taskList.remove(fromPosition);
@@ -102,7 +120,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> im
         notifyItemMoved(fromPosition, toPosition);
 
         // Update the task status when moved to a new column
-        String newStatus = getColumnStatus(toPosition); // Implement getColumnStatus based on your logic
+        String newStatus = getColumnStatus(getColumn(toPosition)); // Implement getColumnStatus based on your logic
         movedTask.updateStatus(newStatus);
     }
     @Override

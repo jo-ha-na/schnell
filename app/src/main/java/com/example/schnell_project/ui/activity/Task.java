@@ -1,6 +1,7 @@
 package com.example.schnell_project.ui.activity;
 
 public class Task {
+    private int id;
     private String title;
     private String description;
     private String status;
@@ -20,6 +21,10 @@ public class Task {
     // Getter and Setter methods
     public String getTitle() {
         return title;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setTitle(String title) {
@@ -50,4 +55,5 @@ public class Task {
                 ", status='" + status + '\'' +
                 '}';
     }
+
 }

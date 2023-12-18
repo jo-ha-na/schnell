@@ -22,11 +22,6 @@
         android:name="com.example.schnell_project.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
-    <fragment
-        android:id="@+id/nav_test"
-        android:name="com.example.schnell_project.ui.test.TestFragment"
-        android:label="@string/menu_test"
-        tools:layout="@layout/fragment_test" />
     <activity
         android:id="@+id/nav_trello"
         android:name="com.example.schnell_project.ui.activity.TrelloActivity"
