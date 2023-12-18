@@ -47,7 +47,7 @@ public class CalendarActivity extends AppCompatActivity {
         // Écoutez les changements de date dans le calendrier
         calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
             // Utilisez la méthode correcte pour charger les événements
-            List<com.example.projetandroid.EventModel> upcomingEvents = loadEventsForDate(year, month, dayOfMonth);
+            List<com.example.schnell.EventModel> upcomingEvents = loadEventsForDate(year, month, dayOfMonth);
 
             // Mettez à jour l'adaptateur avec les nouveaux événements
             upcomingEventsAdapter.updateEvents(upcomingEvents);
@@ -62,8 +62,8 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
     // Méthode pour obtenir les événements à venir pour une date spécifique
-    private List<com.example.projetandroid.EventModel> loadEventsForDate(int year, int month, int dayOfMonth) {
-        List<com.example.projetandroid.EventModel> events = new ArrayList<>();
+    private List<com.example.schnell.EventModel> loadEventsForDate(int year, int month, int dayOfMonth) {
+        List<com.example.schnell.EventModel> events = new ArrayList<>();
 
         // Construisez le chemin approprié dans la base de données Firebase en fonction de la date
         String datePath = year + "/" + month + "/" + dayOfMonth;
@@ -76,7 +76,7 @@ public class CalendarActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot eventSnapshot : snapshot.getChildren()) {
-                    com.example.projetandroid.EventModel event = eventSnapshot.getValue(com.example.projetandroid.EventModel.class);
+                    com.example.schnell.EventModel event = eventSnapshot.getValue(com.example.schnell.EventModel.class);
                     events.add(event);
                 }
 

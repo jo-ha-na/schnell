@@ -25,7 +25,7 @@ public class EventActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewEvents;
     private EventAdapter eventAdapter;
-    private List<com.example.projetandroid.EventModel> eventList;
+    private List<com.example.schnell.EventModel> eventList;
     private DatabaseReference databaseReference;
     private TextView textViewDate;
 
@@ -59,7 +59,7 @@ public class EventActivity extends AppCompatActivity {
             String formattedDate = String.format("%02d/%02d/%04d", dayOfMonth, month + 1, year);
             textViewDate.setText("Événements à la date : " + formattedDate);
 
-            List<com.example.projetandroid.EventModel> eventsForDate = loadEventsForDate(year, month, dayOfMonth);
+            List<com.example.schnell.EventModel> eventsForDate = loadEventsForDate(year, month, dayOfMonth);
 
             eventList.clear();
             eventList.addAll(eventsForDate);
@@ -74,14 +74,14 @@ public class EventActivity extends AppCompatActivity {
         });
     }
 
-    private List<com.example.projetandroid.EventModel> loadEventsForDate(int year, int month, int dayOfMonth) {
-        List<com.example.projetandroid.EventModel> events = new ArrayList<>();
+    private List<com.example.schnell.EventModel> loadEventsForDate(int year, int month, int dayOfMonth) {
+        List<com.example.schnell.EventModel> events = new ArrayList<>();
 
         databaseReference.child(year + "-" + month + "-" + dayOfMonth).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot eventSnapshot : snapshot.getChildren()) {
-                    com.example.projetandroid.EventModel event = eventSnapshot.getValue(com.example.projetandroid.EventModel.class);
+                    com.example.schnell.EventModel event = eventSnapshot.getValue(com.example.schnell.EventModel.class);
                     events.add(Objects.requireNonNull(event));
                 }
                 eventAdapter.notifyDataSetChanged();

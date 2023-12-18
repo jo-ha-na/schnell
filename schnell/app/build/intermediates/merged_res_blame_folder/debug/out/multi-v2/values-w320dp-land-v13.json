@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.schnell.app-mergeDebugResources-36:/values-w320dp-land-v13/values-w320dp-land-v13.xml",
+            "outputFile": "com.example.schnell.app-mergeDebugResources-48:/values-w320dp-land-v13/values-w320dp-land-v13.xml",
             "map": [
                 {
                     "source": "C:\\Users\\byejo\\.gradle\\caches\\transforms-3\\b535b465905ee936cea1e5019eff40af\\transformed\\material-1.10.0\\res\\values-w320dp-land-v13\\values-w320dp-land-v13.xml",
