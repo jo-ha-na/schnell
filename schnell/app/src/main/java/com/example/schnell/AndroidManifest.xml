@@ -10,18 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.schnell"
+        android:theme="@style/Theme.Projetandroid"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.schnell.NoActionBar" />
-
-
-
-        <activity
-            android:name=".MainActivity2"
             android:exported="false" />
         <activity
             android:name=".Reg"
@@ -73,7 +65,5 @@
             android:exported="false" />
 
     </application>
-
-
 
 </manifest>

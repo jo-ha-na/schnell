@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categories">
+        <item>Toutes</item>
+        <item>Personnel</item>
+        <item>Travail</item>
+        <item>Maison</item>
+        <item>Décoration</item>
+        <item>Voyages</item>
+        <item>Autre</item>
+        <!-- Ajoutez autant d'éléments que nécessaire -->
+    </string-array>
+
+
+</resources>
