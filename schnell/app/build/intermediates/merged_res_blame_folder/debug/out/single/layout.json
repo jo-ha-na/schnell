@@ -1,0 +1,82 @@
+[
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/fragment_gallery.xml",
+        "source": "com.example.schnell.app-main-40:/layout/fragment_gallery.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/activity_note.xml",
+        "source": "com.example.schnell.app-main-40:/layout/activity_note.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/activity_add_note.xml",
+        "source": "com.example.schnell.app-main-40:/layout/activity_add_note.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/nav_header_main.xml",
+        "source": "com.example.schnell.app-main-40:/layout/nav_header_main.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/content_main.xml",
+        "source": "com.example.schnell.app-main-40:/layout/content_main.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/activity_modify_date.xml",
+        "source": "com.example.schnell.app-main-40:/layout/activity_modify_date.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/activity_calendar.xml",
+        "source": "com.example.schnell.app-main-40:/layout/activity_calendar.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/activity_event.xml",
+        "source": "com.example.schnell.app-main-40:/layout/activity_event.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/item_upcoming_event.xml",
+        "source": "com.example.schnell.app-main-40:/layout/item_upcoming_event.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/activity_task.xml",
+        "source": "com.example.schnell.app-main-40:/layout/activity_task.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/fragment_home.xml",
+        "source": "com.example.schnell.app-main-40:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/item_event.xml",
+        "source": "com.example.schnell.app-main-40:/layout/item_event.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/nav_header_task.xml",
+        "source": "com.example.schnell.app-main-40:/layout/nav_header_task.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/activity_main.xml",
+        "source": "com.example.schnell.app-main-40:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/app_bar_main.xml",
+        "source": "com.example.schnell.app-main-40:/layout/app_bar_main.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/activity_event_list.xml",
+        "source": "com.example.schnell.app-main-40:/layout/activity_event_list.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/activity_event_model.xml",
+        "source": "com.example.schnell.app-main-40:/layout/activity_event_model.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/fragment_slideshow.xml",
+        "source": "com.example.schnell.app-main-40:/layout/fragment_slideshow.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/activity_note_model.xml",
+        "source": "com.example.schnell.app-main-40:/layout/activity_note_model.xml"
+    },
+    {
+        "merged": "com.example.schnell.app-mergeDebugResources-37:/layout/activity_add_event.xml",
+        "source": "com.example.schnell.app-main-40:/layout/activity_add_event.xml"
+    }
+]
