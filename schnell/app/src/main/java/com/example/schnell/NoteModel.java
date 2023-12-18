@@ -1,16 +1,9 @@
 package com.example.schnell;
 
 
-import com.google.firebase.database.PropertyName;
-
 public class NoteModel {
-    @PropertyName("id")
     private String id;
-
-    @PropertyName("text")
     private String text;
-
-    @PropertyName("category")
     private String category;
 
     public NoteModel() {

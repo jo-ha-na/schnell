@@ -13,9 +13,6 @@
         android:theme="@style/Theme.schnell"
         tools:targetApi="31">
         <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
-        <activity
             android:name=".NoteModel"
             android:exported="false" />
         <activity
@@ -50,24 +47,6 @@
             android:exported="false" />
         <activity
             android:name=".Event"
-            android:exported="false" />
-        <activity
-            android:name=".Users"
-            android:exported="false" />
-        <activity
-            android:name=".userlist"
-            android:exported="false" />
-        <activity
-            android:name=".Reg"
-            android:exported="false" />
-        <activity
-            android:name=".MyAdapter"
-            android:exported="false" />
-        <activity
-            android:name=".Log"
-            android:exported="false" />
-        <activity
-            android:name=".locationpage"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

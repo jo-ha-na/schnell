@@ -19,12 +19,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class EventActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewEvents;
     private EventAdapter eventAdapter;
-    private List<EventModel> eventList;
+    private List<com.example.projetandroid.EventModel> eventList;
     private DatabaseReference databaseReference;
     private TextView textViewDate;
 
@@ -33,7 +34,8 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("events");
+        databaseReference = FirebaseDatabase.getInstance().getReference("events");
+
         recyclerViewEvents = findViewById(R.id.recyclerViewEvents);
         eventList = new ArrayList<>();
         eventAdapter = new EventAdapter(eventList, this);
@@ -48,7 +50,6 @@ public class EventActivity extends AppCompatActivity {
 
         textViewDate = findViewById(R.id.textViewDate);
 
-
         Intent intent = getIntent();
         if (intent.hasExtra("year") && intent.hasExtra("month") && intent.hasExtra("dayOfMonth")) {
             int year = intent.getIntExtra("year", 0);
@@ -58,8 +59,13 @@ public class EventActivity extends AppCompatActivity {
             String formattedDate = String.format("%02d/%02d/%04d", dayOfMonth, month + 1, year);
             textViewDate.setText("Événements à la date : " + formattedDate);
 
-            loadEventsForDate(year, month, dayOfMonth);
+            List<com.example.projetandroid.EventModel> eventsForDate = loadEventsForDate(year, month, dayOfMonth);
+
+            eventList.clear();
+            eventList.addAll(eventsForDate);
+            eventAdapter.notifyDataSetChanged();
         }
+
         // Bouton pour afficher tous les événements
         Button btnShowAllEvents = findViewById(R.id.btnShowAllEvents);
         btnShowAllEvents.setOnClickListener(view -> {
@@ -68,17 +74,15 @@ public class EventActivity extends AppCompatActivity {
         });
     }
 
-    private void loadEventsForDate(final int year, final int month, final int dayOfMonth) {
-        eventList.clear();
+    private List<com.example.projetandroid.EventModel> loadEventsForDate(int year, int month, int dayOfMonth) {
+        List<com.example.projetandroid.EventModel> events = new ArrayList<>();
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child(year + "-" + month + "-" + dayOfMonth).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot eventSnapshot : snapshot.getChildren()) {
-                    EventModel event = eventSnapshot.getValue(EventModel.class);
-                    if (event != null && event.getYear() == year && (event.getMonth() ) == month && event.getDayOfMonth() == dayOfMonth) {
-                        eventList.add(event);
-                    }
+                    com.example.projetandroid.EventModel event = eventSnapshot.getValue(com.example.projetandroid.EventModel.class);
+                    events.add(Objects.requireNonNull(event));
                 }
                 eventAdapter.notifyDataSetChanged();
             }
@@ -88,5 +92,13 @@ public class EventActivity extends AppCompatActivity {
                 // Gérer les erreurs
             }
         });
+
+        return events;
+    }
+
+    private void openModifyDateActivity(Object eventId) {
+        Intent modifyDateIntent = new Intent(EventActivity.this, ModifyDateActivity.class);
+        modifyDateIntent.putExtra("eventId", eventId.toString());
+        startActivity(modifyDateIntent);
     }
 }
