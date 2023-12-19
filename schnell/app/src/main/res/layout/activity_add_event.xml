@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddEventActivity"
+    android:background="@drawable/bg_read_more">
+
+    <EditText
+        android:id="@+id/etEventName"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="50dp"
+        android:background="@drawable/back_edit"
+        android:hint="Nom de l'événement"
+        android:paddingStart="16dp"
+        android:layout_marginTop="16dp"/>
+
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etEventName"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="26dp" />
+
+    <EditText
+        android:id="@+id/etEventDescription"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:hint="Description de l'événement"
+        android:background="@drawable/back_edit"
+        android:paddingStart="16dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@id/datePicker"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/btnSaveEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@id/etEventDescription"
+        android:layout_marginTop="39dp"
+        android:backgroundTint="#861F616A"
+        android:text="Enregistrer" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etEventDescription"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#861F616A"
+        android:layout_marginEnd="39dp"
+        android:text="Annuler" />
+
+</RelativeLayout>

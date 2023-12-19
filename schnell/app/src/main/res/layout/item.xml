@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_back">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/profil" />
+
+
+    <RelativeLayout
+        android:id="@+id/rlt_layout"
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
+        android:layout_marginTop="165dp"
+        android:gravity="left">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="30dp"
+            android:textStyle="bold"
+            android:textSize="23sp"
+            android:paddingTop="8dp"
+            android:paddingStart="18dp"
+            android:text="Firstname :"
+            android:background="@drawable/back_edit"/>
+
+        <TextView
+            android:id="@+id/tvfirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="200dp"
+            android:textStyle="bold"
+            android:textSize="23sp"
+            android:paddingTop="8dp"
+            android:paddingStart="18dp"
+            android:paddingRight="18dp"
+            android:text="Arya"
+            />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:textStyle="bold"
+            android:textSize="23sp"
+            android:layout_below="@id/tv1"
+            android:paddingTop="8dp"
+            android:paddingStart="18dp"
+            android:text="Lastname :"
+            android:background="@drawable/back_edit"/>
+
+        <TextView
+            android:id="@+id/tvlastName"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="200dp"
+            android:textStyle="bold"
+            android:textSize="23sp"
+            android:layout_below="@id/tv1"
+            android:paddingTop="8dp"
+            android:paddingStart="18dp"
+            android:text="Stark"
+            />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="30dp"
+            android:textStyle="bold"
+            android:textSize="23sp"
+            android:layout_below="@id/tv2"
+            android:layout_marginTop="30dp"
+            android:paddingTop="8dp"
+            android:paddingStart="18dp"
+            android:text="Age :"
+            android:background="@drawable/back_edit"/>
+
+        <TextView
+            android:id="@+id/tvAge"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="200dp"
+            android:textStyle="bold"
+            android:textSize="23sp"
+            android:layout_below="@id/tv2"
+            android:layout_marginTop="30dp"
+            android:paddingTop="8dp"
+            android:paddingStart="18dp"
+            android:text="23"
+            />
+
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="30dp"
+            android:textStyle="bold"
+            android:textSize="23sp"
+            android:layout_below="@id/tv3"
+            android:layout_marginTop="30dp"
+            android:paddingTop="8dp"
+            android:paddingStart="18dp"
+            android:text="Username :"
+            android:background="@drawable/back_edit"/>
+
+        <TextView
+            android:id="@+id/tvuserName"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="200dp"
+            android:textStyle="bold"
+            android:textSize="23sp"
+            android:layout_below="@id/tv3"
+            android:layout_marginTop="30dp"
+            android:paddingTop="8dp"
+            android:paddingStart="18dp"
+            android:text="pseudo"
+            />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

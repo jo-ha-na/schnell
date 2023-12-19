@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "715892922757",
+    "firebase_url": "https://cestparti-da95b-default-rtdb.firebaseio.com",
+    "project_id": "cestparti-da95b",
+    "storage_bucket": "cestparti-da95b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715892922757:android:0e2dd22971094cf640ccec",
+        "android_client_info": {
+          "package_name": "com.example.letsgo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeHu3V_O3SUEbzKw5v6E10d986QQVYesk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715892922757:android:8cf2ba1a3741145040ccec",
+        "android_client_info": {
+          "package_name": "com.example.powpow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeHu3V_O3SUEbzKw5v6E10d986QQVYesk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715892922757:android:a5db254964d5d8e140ccec",
+        "android_client_info": {
+          "package_name": "com.example.schnell"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeHu3V_O3SUEbzKw5v6E10d986QQVYesk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

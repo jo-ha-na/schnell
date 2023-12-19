@@ -1,0 +1,48 @@
+<!-- item_event.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_read_more">
+
+    <TextView
+        android:id="@+id/textViewEventName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Nom de l'événement" />
+
+    <TextView
+        android:id="@+id/textViewEventDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description de l'événement" />
+
+    <TextView
+        android:id="@+id/textViewEventDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date de l'événement"
+        android:textStyle="bold"
+        android:textColor="#D8233D"/>
+
+    <Button
+        android:id="@+id/btnModifyDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#861F616A"
+        android:text="Modifier" />
+
+    <Button
+        android:id="@+id/btnDeleteSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recyclerViewAllEvents"
+        android:text="Supprimer"
+        android:backgroundTint="#861F616A"/>
+
+
+
+    <!-- Ajoutez d'autres vues selon vos besoins -->
+
+</LinearLayout>
